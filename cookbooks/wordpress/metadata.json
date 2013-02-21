@@ -71,7 +71,7 @@
     "WordPress/db/database": {
       "display_name": "WordPress MySQL database",
       "description": "WordPress will use this MySQL database to store its data.",
-      "default": "wordpressdb",
+      "default": "wpdatabase",
       "choice": [
 
       ],
@@ -85,7 +85,7 @@
     "WordPress/db/user": {
       "display_name": "WordPress MySQL user",
       "description": "WordPress will connect to MySQL using this user.",
-      "default": "wordpressuser",
+      "default": "wpadmin",
       "choice": [
 
       ],
@@ -99,7 +99,7 @@
     "WordPress/db/password": {
       "display_name": "WordPress MySQL password",
       "description": "Password for the WordPress MySQL user.",
-      "default": "randomly generated",
+      "default": "wppass",
       "choice": [
 
       ],
