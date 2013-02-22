@@ -78,7 +78,7 @@ execute "untar-wordpress" do
 end
 
 execute "mysql-install-wp-privileges" do
-  command "/usr/bin/mysql -u root -p\"#{node['mysql']['server_root_password']}\" < #{node['mysql']['conf_dir']}/wp-grants.sql"
+  command "/usr/bin/mysql -u root -p\'#{node['mysql']['server_root_password']}\' < #{node['mysql']['conf_dir']}/wp-grants.sql"
   action :nothing
 end
 
@@ -96,7 +96,7 @@ template "#{node['mysql']['conf_dir']}/wp-grants.sql" do
 end
 
 execute "create #{node['wordpress']['db']['database']} database" do
-  command "/usr/bin/mysqladmin -u root -p\"#{node['mysql']['server_root_password']}\" create #{node['wordpress']['db']['database']}"
+  command "/usr/bin/mysqladmin -u root -p\'#{node['mysql']['server_root_password']}\' create #{node['wordpress']['db']['database']}"
   not_if do
     # Make sure gem is detected if it was just installed earlier in this recipe
     require 'rubygems'
