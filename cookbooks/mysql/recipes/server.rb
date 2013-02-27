@@ -37,7 +37,7 @@ if Chef::Config[:solo]
 else
   # generate all passwords
   node.set_unless['mysql']['server_debian_password'] = secure_password
-  node.set_unless['mysql']['server_root_password']   = "\$\$MNroot"
+  node.set_unless['mysql']['server_root_password']   = secure_password
   node.set_unless['mysql']['server_repl_password']   = secure_password
   node.save
 end
@@ -193,7 +193,7 @@ unless platform_family?(%w{mac_os_x})
     end
   else
     execute "mysql-install-privileges" do
-      command %Q["#{node['mysql']['mysql_bin']}" -u root #{node['mysql']['server_root_password'].empty? ? '' : '-p' }'#{node['mysql']['server_root_password']}' < "#{grants_path}"]
+      command %Q["#{node['mysql']['mysql_bin']}" -u root #{node['mysql']['server_root_password'].empty? ? '' : '-p' }"#{node['mysql']['server_root_password']}" < "#{grants_path}"]
       action :nothing
       subscribes :run, resources("template[#{grants_path}]"), :immediately
     end
